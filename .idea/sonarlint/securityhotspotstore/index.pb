@@ -116,3 +116,10 @@ Q.idea/sonarlint/securityhotspotstore/e/e/eeb0d45712c6067d85841374968d62a90ed9cd
 Q.idea/sonarlint/securityhotspotstore/7/7/774840a39887eedaa6f314b933b131dab1fd6449,0\c\0c8387757b10290cfcfff4fac1abcddf533880ca
 Å
 Q.idea/sonarlint/securityhotspotstore/4/3/43ac9957c50af86a05a8457fa51337f4b7b1290c,3\3\3358452b758edeb5e04a324e32fdaab65c6a64f9
+:
+
+gradle.txt,7\b\7b0af5409dadfbce86c1c60b18c4b922cd1e00c5
+`
+0src/main/java/com/co/rimac/models/Variables.java,1\7\170cb24d0361e0f8e03c5c4a26f09d9b7741bc82
+l
+<src/test/java/com/co/rimac/steps/DeleteSingleMemberStep.java,8\6\8690dab5e43cc8d2df10b63b7a56fb48c3af366f

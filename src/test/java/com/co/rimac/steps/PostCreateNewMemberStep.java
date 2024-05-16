@@ -8,7 +8,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class PostCreateNewMemberStep {
-
     private final PostPage postPage = new PostPage();
 
     @Given("se ingresa la data del usuario")
@@ -21,13 +20,13 @@ public class PostCreateNewMemberStep {
         postPage.postService();
     }
 
-    @And("se genera el response")
-    public void se_genera_el_response() {
-        postPage.postResponseStatus();
+    @And("se genera el response {int}")
+    public void se_genera_el_response(int statusCode) {
+        postPage.validarStatusPostMembers(statusCode);
     }
 
     @Then("se validan los datos del response")
     public void se_validan_los_datos_del_response() {
-        postPage.postResponseValidate();
+        postPage.patchResponseValidate();
     }
 }

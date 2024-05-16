@@ -20,6 +20,6 @@ public class UploadImageStep {
 
     @Then("el servicio cargar responde con status {int}")
     public void el_servidor_responde_con_status(int status) {
-        uploadPage.validarStatus(status);
+        uploadPage.validarStatusPostImage(status);
     }
 }

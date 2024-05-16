@@ -1,38 +1,51 @@
 package com.co.rimac.pages;
 
 import io.cucumber.datatable.DataTable;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.junit.Assert;
 
+import static com.co.rimac.models.Variables.password;
+import static com.co.rimac.models.Variables.username;
 import static org.hamcrest.Matchers.equalTo;
 import static io.restassured.RestAssured.given;
 
 public class PostPage {
-
+    private static final String BASE_URL = "http://localhost:5002/api";
     private String requestBody;
-    private Response response;
+    private int statusCodePostMember;
+    Response responsePostMember;
 
     public void requestBodyService(DataTable dataTable) {
         requestBody = "{\"name\": \"" + dataTable.cell(1, 0) + "\", \"gender\": \"" + dataTable.cell(1, 1) + "\"}";
     }
 
     public void postService() {
-        RestAssured.baseURI = "http://localhost:5002/api";
+        responsePostMember =
+                given()
+                        .baseUri(BASE_URL)
+                        .auth()
+                        .preemptive()
+                        .basic(username, password)
+                        .when()
+                        .contentType(ContentType.JSON)
+                        .body(requestBody)
+                        .post("/members")
+                        .thenReturn();
 
-        response = given()
-                .contentType(ContentType.JSON)
-                .body(requestBody)
-                .when()
-                .post("/members");
+        statusCodePostMember = responsePostMember.getStatusCode();
+        String responseBody = responsePostMember.getBody().asString();
+
+        System.out.println("Response:");
+        System.out.println(responseBody);
     }
 
-    public void postResponseStatus() {
-        response.then().statusCode(201);
+    public void validarStatusPostMembers(int expectedStatusCode) {
+        Assert.assertEquals(expectedStatusCode, statusCodePostMember);
     }
 
-    public void postResponseValidate () {
-        response.then()
+    public void patchResponseValidate () {
+        responsePostMember.then()
                 .body("name", equalTo("Alonso"))
                 .body("gender", equalTo("Male"));
     }

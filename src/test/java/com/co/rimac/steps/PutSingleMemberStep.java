@@ -8,7 +8,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class PutSingleMemberStep {
-
     private final PutPage putPage = new PutPage();
 
     @Given("se ingresa la data del usuario PUT")
@@ -16,14 +15,14 @@ public class PutSingleMemberStep {
         putPage.requestBodyService(dataTable);
     }
 
-    @When("se envia un request para crear un nuevo usuario PUT {int}")
+    @When("se envia un request para actualizar un nuevo usuario PUT {int}")
     public void se_envia_un_request_para_crear_un_nuevo_usuario_PUT(int id) {
         putPage.putService(id);
     }
 
-    @And("se genera el response de PUT")
-    public void se_genera_el_response_PUT() {
-        putPage.putResponseStatus();
+    @And("se genera el response de PUT {int}")
+    public void se_genera_el_response_PUT(int statusCode) {
+        putPage.validarStatusPutMembers(statusCode);
     }
 
     @Then("se validan los datos del response PUT")
